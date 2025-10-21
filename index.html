@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ビジネスプロセス インタビュースクリプト生成ツール</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>ビジネスプロセス インタビュースクリプト生成ツール</h1>
+            <p class="subtitle">業務の暗黙知を引き出すための質問スクリプトを自動生成</p>
+        </header>
+
+        <main>
+            <section class="input-section">
+                <h2>インタビュー情報の入力</h2>
+                <form id="interviewForm">
+                    <div class="form-group">
+                        <label for="processName">業務プロセス名 *</label>
+                        <input type="text" id="processName" name="processName" required
+                               placeholder="例: 月次決算業務、受注処理業務">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="department">対象部門 *</label>
+                        <input type="text" id="department" name="department" required
+                               placeholder="例: 経理部、営業部">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="role">インタビュー対象者の役割 *</label>
+                        <input type="text" id="role" name="role" required
+                               placeholder="例: 担当者、課長、ベテラン社員">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="background">変更の背景・現状の課題</label>
+                        <textarea id="background" name="background" rows="3"
+                                  placeholder="例: システム刷新に伴う業務フロー見直し、業務効率化のため"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="purpose">インタビューの目的</label>
+                        <textarea id="purpose" name="purpose" rows="3"
+                                  placeholder="例: 現状業務の詳細な手順と判断基準の把握、属人化している業務の可視化"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label>質問の重点項目（複数選択可）</label>
+                        <div class="checkbox-group">
+                            <label><input type="checkbox" name="focus" value="workflow" checked> 業務フロー・手順</label>
+                            <label><input type="checkbox" name="focus" value="judgment" checked> 判断基準・意思決定</label>
+                            <label><input type="checkbox" name="focus" value="exception" checked> 例外処理・イレギュラー対応</label>
+                            <label><input type="checkbox" name="focus" value="dependency" checked> 他部署・システム連携</label>
+                            <label><input type="checkbox" name="focus" value="skills" checked> 必要なスキル・暗黙知</label>
+                            <label><input type="checkbox" name="focus" value="problems" checked> 課題・改善ポイント</label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">スクリプトを生成</button>
+                </form>
+            </section>
+
+            <section class="output-section" id="outputSection" style="display: none;">
+                <h2>生成されたインタビュースクリプト</h2>
+                <div class="button-group">
+                    <button onclick="copyToClipboard()" class="btn-secondary">コピー</button>
+                    <button onclick="downloadScript()" class="btn-secondary">ダウンロード</button>
+                    <button onclick="resetForm()" class="btn-secondary">新規作成</button>
+                </div>
+                <div id="scriptOutput" class="script-output"></div>
+            </section>
+        </main>
+
+        <footer>
+            <p>業務プロセスの変更において、現場の声と暗黙知を適切に聞き出すためのツールです</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
